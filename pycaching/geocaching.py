@@ -505,7 +505,6 @@ class Geocaching(object):
 
         (_, tid, trackable_type, name) = re.split("[\(\)-]", root.title.string)
         trackable_type = trackable_type.strip()
-        name = name.strip()
 
         owner_raw = root.findAll("a",
             {"id" : "ctl00_ContentBody_BugDetails_BugOwner"})
@@ -518,10 +517,10 @@ class Geocaching(object):
         location = re.split("[\<\>]", str(location_raw))[2]
 
         description_raw = root.findAll("div", {"id" : "TrackableDetails"})
-        description = description_raw[0].text.strip()
+        description = description_raw[0].text
 
         goal_raw = root.findAll("div", {"id" : "TrackableGoal"})
-        goal = goal_raw[0].text.strip()
+        goal = goal_raw[0].text
 
         # create trackable object
         t = Trackable(tid, self)
